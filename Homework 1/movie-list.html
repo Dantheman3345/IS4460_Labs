@@ -20,18 +20,22 @@
 	
 <!-- Navbar -->
 <nav class="navbar navbar-default">
-	<div class="container">
-	  <div class="navbar-header">
-		 <a class="navbar-brand" href="#myPage"><span class="projector.png"></span></a>
-	  </div>
-	  <div class="collapse navbar-collapse" id="myNavbar">
-		<ul class="nav navbar-nav navbar-right">
-            <li><a href="movie-login.html">Login</a></li>
-            <li><a href="movie-list.html">Movie List</a></li>
-		</ul>
-	  </div>
-	</div>
-  </nav>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="movie-list.html">Movie List</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="movie-login.html">Login</a></li>
+                <li><a href="movie-list.html">Movie List</a></li>
+                <li><a href="movie-add.html">Add Movie</a></li>
+                <li><a href="movie-update.html">Update Movie</a></li>
+                <li><a href="movie-delete.html">Delete Movie</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 	
   <table class="table">
 	<thead>
@@ -47,37 +51,44 @@
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr>
-		<th scope="row">1</th>
-		<td>Terminator 2 Judgment Day</td>
-		<td>Arnold kills lots of robots really fast</td>
-		<td>1991</td>
-		<td>100 M</td>
-		<td>2H33M</td>
-		<td>8.6/10</td>
-		<td>Action</td>
-	  </tr>
-	  <tr>
-		<th scope="row">2</th>
-		<td>The Meg 2</td>
-		<td>Jason kills lots of sharks really fast</td>
-		<td>2023</td>
-		<td>129M</td>
-		<td>1H56M</td>
-		<td>2.7/10</td>
-		<td>Action</td>
-	  </tr>
-	  <tr>
-		<th scope="row">3</th>
-		<td>Moonfall</td>
-		<td>Patrick kills alliens really fast</td>
-		<td>2022</td>
-		<td>138M</td>
-		<td>2H10M</td>
-		<td>3.5/10</td>
-		<td>Action</td>
-	  </tr>
-	</tbody>
+		<!-- First Movie Row -->
+		<tr>
+		  <th scope="row">1</th>
+		  <td>Terminator 2 Judgment Day</td>
+		  <td>Arnold kills lots of robots really fast</td>
+		  <td>1991</td>
+		  <td>100 M</td>
+		  <td>2H33M</td>
+		  <td>8.6/10</td>
+		  <td>Action</td>
+		  <td><a href="movie-details.html" class="btn btn-info">Additional Movie Details</a></td>
+		</tr>
+		<!-- Second Movie Row -->
+		<tr>
+		  <th scope="row">2</th>
+		  <td>The Meg 2</td>
+		  <td>Jason kills lots of sharks really fast</td>
+		  <td>2023</td>
+		  <td>129M</td>
+		  <td>1H56M</td>
+		  <td>2.7/10</td>
+		  <td>Action</td>
+		  <td><a href="movie-details.html" class="btn btn-info">Additional Movie Details</a></td>
+		</tr>
+		<!-- Third Movie Row -->
+		<tr>
+		  <th scope="row">3</th>
+		  <td>Moonfall</td>
+		  <td>Patrick kills alliens really fast</td>
+		  <td>2022</td>
+		  <td>138M</td>
+		  <td>2H10M</td>
+		  <td>3.5/10</td>
+		  <td>Action</td>
+		  <td><a href="movie-details.html" class="btn btn-info">Additional Movie Details</a></td>
+		</tr>
+		<!-- Add more rows as needed -->
+	  </tbody>
   </table>
 
 	

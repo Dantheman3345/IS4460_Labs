@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Movie</title>
+    <!-- Header -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="jumbotron text-center">
+        <h1>Delete a Movie</h1>
+        <p>Select a movie to remove it from the list</p>
+    </div>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="movie-list.html">Movie List</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="movie-login.html">Login</a></li>
+                <li><a href="movie-list.html">Movie List</a></li>
+                <li><a href="movie-add.html">Add Movie</a></li>
+                <li><a href="movie-update.html">Update Movie</a></li>
+                <li><a href="movie-delete.html">Delete Movie</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h2>Delete Movie</h2>
+    <form action="movie-list.html" method="post">
+        <!-- Movie ID field -->
+        <div class="form-group">
+            <label for="movieId">Movie ID:</label>
+            <input type="text" class="form-control" id="movieId" name="movieId" placeholder="Enter Movie ID" required>
+        </div>
+
+        <button type="submit" class="btn btn-danger">Delete Movie</button>
+    </form>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>Footer Content</p>
+</footer>
+
+</body>
+</html>

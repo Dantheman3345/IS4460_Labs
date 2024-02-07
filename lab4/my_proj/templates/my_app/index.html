@@ -1,0 +1,13 @@
+<html>
+<body>
+    {{ hi }}
+<br>
+    original name was {{orig_name}} the title name is {{new_name}}
+    <ul>
+    <p>{% for name in names %}
+        <li>{{name}}</li>
+        {% endfor %}
+    </p>
+</ul>
+</body>
+</html>
