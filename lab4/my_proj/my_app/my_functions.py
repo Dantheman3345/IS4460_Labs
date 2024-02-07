@@ -1,3 +1,3 @@
-def title_names (names:list):
-    return_list = [x.title() for x in names]
-    return return_list
+def fix_name(name:str):
+        new_name = name.title()
+        return new_name

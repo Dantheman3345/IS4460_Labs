@@ -1,23 +1,13 @@
 <html>
 <body>
     {{ hi }}
-  
-    {{name}}
 <br>
-    {% for name in names_list %}
-    {{name}}
-    {% endfor %}
-<p>
-    {{ names_list.0}}
-</p>
-<p>
-    The color of car 1 is: {{car1.color}}
-    Car 2 is {{car2.make}}
-    
-</p>
-<p>
-    Car2 color:{{car2.color}} makes sound: {{car2.honk}} and has wheels: {{car2.wheels}}
-    
-</p>
+    original name was {{orig_name}} the title name is {{new_name}}
+    <ul>
+    <p>{% for name in names %}
+        <li>{{name}}</li>
+        {% endfor %}
+    </p>
+</ul>
 </body>
 </html>
