@@ -1,13 +1,55 @@
+<!--
 <html>
 <body>
     {{ hi }}
-<br>
-    original name was {{orig_name}} the title name is {{new_name}}
+    <br>
+    original name was {{orig_name}} but now the fixed title name is {{name}}
     <ul>
-    <p>{% for name in names %}
-        <li>{{name}}</li>
+        {% for name in names %}
+            <li>{{ name }}</li>
         {% endfor %}
+    </ul>
+    btw the second name is {{names.1}}
+    <ul>
+        {% for name in fixed_names %}
+            <li>{{ name }}</li>
+        {% endfor %}
+    </ul>
+    <p>
+        car1 that is color {{car1.color}} and makes sound: {{car1.honk}} and has wheels: {{car1.wheels}}
+        car2 that is color {{car2.color}} and makes sound: {{car2.honk}} and has wheels: {{car2.wheels}}
     </p>
-</ul>
+    <p>
+        motorcycle1 make: {{motorcycle1.make }} year: {{ motorcycle1.year}} and has wheels: {{motorcycle1.wheels}}
+    </p>
 </body>
 </html>
+-->
+<html>
+<body>
+    {{ hi }}
+    <br>
+    original name was {{ orig_name }} but now the fixed title name is {{ name }}
+    <ul>
+        {% for name in names %}
+            <li>{{ name }}</li>
+        {% endfor %}
+    </ul>
+    <!-- To access the second item in a list, use names.1 syntax correctly -->
+    btw the second name is {{ names.1 }}
+    <ul>
+        {% for name in fixed_names %}
+            <li>{{ name }}</li>
+        {% endfor %}
+    </ul>
+    <p>
+        <!-- Ensure you are calling the honk method correctly -->
+        car1 that is color {{ car1.color }} and makes sound: {{ car1.honk }} and has wheels: {{ car1.wheels }}
+        car2 that is color {{ car2.color }} and makes sound: {{ car2.honk }} and has wheels: {{ car2.wheels }}
+    </p>
+    <p>
+        motorcycle1 make: {{ motorcycle1.make }} year: {{ motorcycle1.year }} and has wheels: {{ motorcycle1.wheels }}
+    </p>
+</body>
+</html>
+
