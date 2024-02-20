@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        input[type="text"], input[type="url"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="name">Movie Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="image_url">Movie Image URL:</label>
+    <input type="text" id="image_url" name="image_url" required>
+
+    <label for="image_classpath">Movie Image Classpath:</label>
+    <input type="text" id="image_classpath" name="image_classpath" required>
+
+    <label for="youtube_link">YouTube Trailer Link:</label>
+    <input type="url" id="youtube_link" name="youtube_link" required>
+
+    <input type="submit" value="Add Movie">
+</form>
+
+</body>
+</html>

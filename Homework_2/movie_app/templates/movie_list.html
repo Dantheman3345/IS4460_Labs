@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+</head>
+<body>
+    <h1>Movie List</h1>
+    <a href="{% url 'movie-add' %}">Add New Movie</a>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            <img src="{{ movie.image.url }}" alt="{{ movie.name }}" width="100"><br>
+            <a href="{% url 'movie-details' movie.id %}">{{ movie.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

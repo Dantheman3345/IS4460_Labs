@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie.name }}</title>
+</head>
+<body>
+    <h1>{{ movie.name }}</h1>
+    <img src="{{ movie.image.url }}" alt="{{ movie.name }}">
+    <p><a href="{{ movie.youtube_link }}">Watch Trailer</a></p>
+    <a href="{% url 'movie-update' movie.id %}">Edit</a>
+    <a href="{% url 'movie-delete' movie.id %}">Delete</a>
+</body>
+</html>
