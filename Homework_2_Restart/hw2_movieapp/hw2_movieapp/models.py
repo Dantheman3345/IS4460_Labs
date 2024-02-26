@@ -1,4 +1,5 @@
 from django.db import models
+#from hw2_movieapp.models import Movie
 
 class Movie(models.Model):
     name = models.CharField(max_length=255)

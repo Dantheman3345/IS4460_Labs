@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Assuming you have extracted common styles -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #333; 
+            /* Updated background color */
+        }
+        .header {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+        }
+        .movie-list {
+            margin: auto;
+            width: 80%; /* Added for layout consistency */
+            padding: 20px; /* Updated padding for consistency */
+        }
+        .movie {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            position: relative; /* Added for positioning the YouTube link */
+        }
+        img {
+            width: 100%; /* Ensure images are responsive */
+            height: auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 9px #999;
+            margin-top: 10px; /* Added margin for spacing */
+        }
+        .button:hover {background-color: #0056b3}
+        .button:active {
+            background-color: #0056b3;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .youtube-link {
+            position: absolute; /* Position YouTube link at the top-right corner of the movie block */
+            top: 10px;
+            right: 10px;
+            background-color: #ff0000; /* YouTube red */
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        Movie List
+    </div>
+    
+    {% for movie in movies %}
+    <div class="movie">
+        <h2>{{ movie.name }}</h2>
+        <img src="{{ movie.image_url }}" alt="{{ movie.name }}" class="{{ movie.image_classpath }}">
+        <p>{{ movie.title }} - Directed by {{ movie.director }}</p>
+        <a href="{{ movie.youtube_link }}" class="button youtube-link" target="_blank">Watch Trailer</a>
+        <!-- Updated section with an if check for movie.id -->
+        <!-- Example button in list.html -->
+        
+        <a href="{% url 'movie_details' movie.id %}">
+        <button>View Details</button>
+        </a>
+        
+
+
+    </div>
+    {% empty %}
+    <p>No movies found.</p>
+    {% endfor %}
+    <div class="movie-list-footer">
+        <a href="{% url 'movie_add' %}" class="button">Add New Movie</a>
+    </div>
+    </body>
+    </html>

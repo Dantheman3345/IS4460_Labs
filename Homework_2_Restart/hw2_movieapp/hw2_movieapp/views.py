@@ -2,11 +2,34 @@ from django.shortcuts import render
 from .models import Movie, MovieTicket
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.core.exceptions import ValidationError
+from django.shortcuts import redirect, render
+from .models import Movie  # Make sure this import is correct
+import re
+
 
 def movie_list(request):
-    movies = Movie.objects.all()
+    movies = Movie.objects.all()  # This retrieves all movie instances
     return render(request, 'list.html', {'movies': movies})
 
+def home_view(request):
+    # Check if user is authenticated and redirect to movie list if true
+    if request.user.is_authenticated:
+        return redirect('movie_list')
+    # Render login.html template as the default page if user is not authenticated
+    return render(request, 'login.html')
+
+def movie_details(request, movie_id):
+    # Fetch the movie by movie_id
+    #movie = get_object_or_404(Movie, movie_id=movie_id)
+    #return render(request, 'details.html', {'movie': movie})
+    movie = get_object_or_404(Movie, pk=movie_id)
+    return render(request, 'movie_details.html', {'movie': movie})
 
 
 def movie_login(request):
@@ -23,12 +46,19 @@ def movie_login(request):
     else:
         return render(request, 'login.html')
 
-# Define additional views for add, details, update, ticket purchase, delete, etc.
+def update_movie(request, movie_id):
+    if request.method == 'POST':
+        movie = get_object_or_404(Movie, pk=movie_id)
+        movie.title = request.POST['title']
+        movie.description = request.POST['description']
+        # Add any other fields you need to update
+        movie.save()
+
+        # Use the reverse function to generate the URL for the movie_details view
+        # and redirect the user to that page
+        return HttpResponseRedirect(reverse('movie_details', args=(movie.id,)))
     
-from django.core.exceptions import ValidationError
-from django.shortcuts import redirect, render
-from .models import Movie  # Make sure this import is correct
-import re
+
 
 def movie_add(request):
     if request.method == 'POST':
@@ -78,3 +108,13 @@ def movie_add(request):
         )
         return redirect('movie_list')
     return render(request, 'add.html')
+
+def delete_all_movies(request):
+    Movie.objects.all().delete()
+    return redirect('movie_list')  # Redirect to the movie list view after deletion
+
+def delete_movie(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+    movie.delete()
+    return redirect('movie_list')  # Redirect to the movie list view after deletion
+

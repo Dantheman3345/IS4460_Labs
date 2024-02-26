@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        label, input, textarea {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        input[type="text"], input[type="url"], input[type="number"], textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="name">Movie Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="image_url">Image URL:</label>
+    <input type="url" id="image_url" name="image_url" required>
+    
+    <label for="image_classpath">Image Classpath:</label>
+    <input type="text" id="image_classpath" name="image_classpath" required>
+    
+    <label for="youtube_link">YouTube Link:</label>
+    <input type="url" id="youtube_link" name="youtube_link" required>
+
+    <label for="title">Movie Title:</label>
+    <input type="text" id="title" name="title" required>
+    
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+    
+    <label for="director">Director:</label>
+    <input type="text" id="director" name="director" required>
+    
+    <label for="release_year">Release Year:</label>
+    <input type="number" id="release_year" name="release_year" required>
+    
+    <label for="budget">Budget ($):</label>
+    <input type="text" id="budget" name="budget" required>
+    
+    <label for="runtime">Runtime (minutes):</label>
+    <input type="number" id="runtime" name="runtime" required>
+    
+    <label for="rating">Rating:</label>
+    <input type="text" id="rating" name="rating" required>
+    
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre" required>
+    
+    <input type="submit" value="Add Movie">
+</form>
+
+</body>
+</html>

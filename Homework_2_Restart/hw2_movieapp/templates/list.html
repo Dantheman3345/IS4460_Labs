@@ -10,7 +10,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #333; /* Updated background color */
+            background-color: #333; 
+            /* Updated background color */
         }
         .header {
             margin-bottom: 20px;
@@ -70,25 +71,35 @@
 </head>
 <body>
 
-<div class="header">
-    Movie List
-</div>
-
-<div class="movie-list">
-    {% for movie in movies %}
-    <div class="movie">
-        <h2>{{ movie.name }}</h2> <!-- Display the movie name -->
-        <img src="{{ movie.image_url }}" alt="{{ movie.name }}" class="{{ movie.image_classpath }}"> <!-- Display the movie image -->
-        <p>{{ movie.title }} - Directed by {{ movie.director }}</p>
-        <a href="{{ movie.youtube_link }}" class="button youtube-link" target="_blank">Watch Trailer</a> <!-- Link to the YouTube trailer with new class -->
-        <a href="#" class="button">View Details</a>
+    <div class="header">
+        Movie List
     </div>
-    {% empty %}
-    <p>No movies found.</p>
-    {% endfor %}
+    
+    <div class="movie-list">
+        {% for movie in movies %}
+<div class="movie">
+    <h2>{{ movie.name }}</h2>
+    <img src="{{ movie.image_url }}" alt="{{ movie.name }}" class="{{ movie.image_classpath }}">
+    <p>{{ movie.title }} - Directed by {{ movie.director }}</p>
+    <a href="{{ movie.youtube_link }}" class="button youtube-link" target="_blank">Watch Trailer</a>
+    <!-- Additional check for clarity: explicitly compare movie.id against None -->
+    
+    {% if movie.id != None %}
+    <a href="{% url 'movie_details' movie.id %}">
+        <button>View Details</button>
+    </a>
+    {% else %}
+    <button disabled>Details Unavailable</button>
+    {% endif %}
+    
 </div>
+{% empty %}
+<p>No movies found.</p>
+{% endfor %}
 
-<a href="{% url 'movie_add' %}" class="button">Add New Movie</a>
-
-</body>
+    </div>
+    <div class="movie-list-footer">
+        <a href="{% url 'movie_add' %}" class="button">Add New Movie</a>
+    </div>
+    </body>
 </html>
