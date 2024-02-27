@@ -52,12 +52,12 @@ for user_data in users_data:
 print("3 users added to the database.")
 
 
+
 #write Django QuerySet statements
 all_movies = Movie.objects.all()
 
 movies_starting_with_star = Movie.objects.filter(title__startswith='Star')
 
-# Ensure the movie exists to avoid Movie.DoesNotExist exception
 try:
     movie = Movie.objects.get(title="The Meg 2: The Trench")
 except Movie.DoesNotExist:
@@ -76,5 +76,7 @@ except User.DoesNotExist:
     user = None
 
 
+#Not sure what to do for the SQL stuff
+#SELECT * FROM users WHERE username = 'user1';
 
 
