@@ -1,10 +1,11 @@
 import os
 import django
-from movie.models import Movie, User
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'model_hw2.settings')
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'model_hw2.settings')
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"  # Add this line for Python 3.7+
 django.setup()
 
+from movie.models import Movie, User
 
 # Clear all entries from the Movie and User tables
 for movie in Movie.objects.all():
@@ -19,9 +20,9 @@ print("All users deleted.")
 
 #add 10 movies and save them
 movies_data = [
-    {"title": "Moonfall", "description": "Two former astronauts alongside a conspiracy theorist discover the hidden truth about Earth's moon when it leaves its orbit[^1^][3].", "director": "Roland Emmerich[^2^][4]", "release_year": "2022", "budget": "$138–146 million", "runtime": "Unknown", "rating": "Unknown", "genre": "Science Fiction"},
+    {"title": "Moonfall", "description": "Two former astronauts alongside a conspiracy theorist discover the hidden truth about Earth's moon when it leaves its orbit[^1^][3].", "director": "Roland Emmerich[^2^][4]", "release_year": "2022", "budget": "$138 million", "runtime": "Unknown", "rating": "Unknown", "genre": "Science Fiction"},
     {"title": "The Meg 2: The Trench", "description": "Researchers fight for survival against massive prehistoric sea creatures and an equally predatory mining operation[^3^][18].", "director": "Unknown", "release_year": "2023", "budget": "Unknown", "runtime": "115 minutes", "rating": "PG-13", "genre": "Action"},
-    {"title": "Godzilla vs King Kong", "description": "Kong and a young girl who can communicate with him embark on a journey to find his true home, but they encounter a raging Godzilla who is being provoked by unseen forces[^4^][9].", "director": "Adam Wingard[^4^][9]", "release_year": "2021", "budget": "$155–200 million", "runtime": "113 minutes", "rating": "PG-13", "genre": "Action, Sci-Fi"},
+    {"title": "Godzilla vs King Kong", "description": "Kong and a young girl who can communicate with him embark on a journey to find his true home, but they encounter a raging Godzilla who is being provoked by unseen forces[^4^][9].", "director": "Adam Wingard[^4^][9]", "release_year": "2021", "budget": "$155 million", "runtime": "113 minutes", "rating": "PG-13", "genre": "Action, Sci-Fi"},
     {"title": "Terminator 2: Judgment Day", "description": "Two Terminators travel from the future to track down Sarah Connor's young son, John: One machine is programmed to kill him, the other to protect him[^5^][48].", "director": "Unknown", "release_year": "Unknown", "budget": "Unknown", "runtime": "Unknown", "rating": "Unknown", "genre": "Sci-Fi, Action"},
     {"title": "Star Wars: Episode IV - A New Hope", "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station[^6^][13].", "director": "George Lucas[^7^][12]", "release_year": "1977", "budget": "Unknown", "runtime": "Unknown", "rating": "PG", "genre": "Action, Adventure, Fantasy, Science Fiction"},
     {"title": "Spaceballs", "description": "Planet Spaceball, led by President Skroob, has wasted all of its air. Skroob schemes to steal air from the planet Druidia by kidnapping the daughter of King Roland[^8^][23].", "director": "Mel Brooks[^9^][22]", "release_year": "1987", "budget": "Unknown", "runtime": "Unknown", "rating": "Unknown", "genre": "Sci-Fi, Comedy"},
