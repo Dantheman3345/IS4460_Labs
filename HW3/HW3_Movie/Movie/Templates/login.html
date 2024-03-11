@@ -1,0 +1,21 @@
+<!-- Movie/templates/login.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <h2>Welcome, {{ name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+    <button type="button" onclick="window.location.href='{% url 'list' %}';">Go to List</button>
+</body>
+</html>
