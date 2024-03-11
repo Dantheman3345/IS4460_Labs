@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+<body>
+
+    Orders: <a href="{% url 'order-edit' %}">new order</a><br>
+    <table class="table">
+        <tr>
+            <th>Customer Name</th>
+            <th>Order Id</th>
+            <th>Order Total</th>
+            <th></th>
+        </tr>
+        {% for order in orders %}
+        <td>{{ order.customer.name }}</td><td>{{ order.id }}</td><td>{{ order.order_total}}</td><td><a href="{% url 'order-edit' order.id %}">edit</a></td><td><a href="{% url 'order-delete' order.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </table>
+
+</body>
+
+</html>
