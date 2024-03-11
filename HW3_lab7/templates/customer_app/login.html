@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3 Daniel Myers</title>
+    <style>
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            text-align: center;
+        }
+        .login-container input, .login-container button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+        }
+        .order-link {
+            display: inline-block;
+            background-color: #555;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>HW3 Daniel Myers</h1>
+        <form action="order_list.html" method="get">
+            <div>
+                <input type="text" placeholder="Username" name="username" required>
+            </div>
+            <div>
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <a class="order-link" href="{% url 'order-list' %}">Go to Movie List</a>
+    </div>
+</body>
+</html>

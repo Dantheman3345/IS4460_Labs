@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+Order Edit:<br>
+<form method='post' class="form" action="{% url 'order-update' order_id=order.id %}">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value='Update'>
+  </form>
+</form>
+
+</body>
+</html>
