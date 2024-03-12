@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from .models import Customer, Order, Movie
-from .forms import CustomerForm, OrderForm
+from .forms import CustomerForm, OrderForm, MovieForm
 from django.views.generic import ListView, UpdateView, DeleteView, TemplateView, CreateView
 # Create your views here.
 
@@ -10,18 +10,21 @@ from django.views.generic import ListView, UpdateView, DeleteView, TemplateView,
 class LoginView(TemplateView):
     template_name = 'customer_app/login.html'
 
-# Movie List View
 class MovieListView(ListView):
     model = Movie
+    template_name = 'movie_list.html'  # Ensure you have this template created
     context_object_name = 'movies'
-    template_name = 'movie_list.html'
 
-# Movie Edit View
 class MovieUpdateView(UpdateView):
     model = Movie
-    fields = ['title', 'description', 'director', 'release_year', 'budget', 'runtime', 'rating', 'genre']
-    template_name = 'customer_app/order_edit.html'
-    success_url = reverse_lazy('movie-list')
+    form_class = MovieForm
+    template_name = 'order_edit.html'  # Update to match your template's file name
+    success_url = reverse_lazy('movie-list')  # Redirect to your movie list view
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['movie'] = self.object  # Pass the movie object to the template
+        return context
 
 # Movie Delete View
 class MovieDeleteView(DeleteView):
@@ -31,9 +34,9 @@ class MovieDeleteView(DeleteView):
 
 class MovieCreateView(CreateView):
     model = Movie
-    fields = ['title', 'description', 'director', 'release_year', 'budget', 'runtime', 'rating', 'genre']
-    template_name = 'movie_form.html'  # Use the appropriate template
-    success_url = reverse_lazy('movie-list')  # Redirect to the movie list after creation
+    form_class = MovieForm
+    template_name = 'movie_form.html'  # Ensure you have this template for adding movies
+    success_url = reverse_lazy('movie-list')
 
 
 

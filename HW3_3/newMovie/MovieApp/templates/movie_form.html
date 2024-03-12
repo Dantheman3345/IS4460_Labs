@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add/Update Movie</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        textarea {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add/Update Movie</h1>
+        <img src="https://image.shutterstock.com/image-vector/realistic-cinema-advertising-poster-popcorn-260nw-1411840919.jpg" alt="Cinema Graphic">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("id_title").placeholder = "Enter movie title (string)";
+        document.getElementById("id_description").placeholder = "Enter movie description (string)";
+        document.getElementById("id_director").placeholder = "Enter director's name (string)";
+        document.getElementById("id_release_year").placeholder = "Enter release year (integer)";
+        document.getElementById("id_budget").placeholder = "Enter budget (integer)";
+        document.getElementById("id_runtime").placeholder = "Enter runtime (integer)";
+        document.getElementById("id_rating").placeholder = "Enter rating (float)";
+        document.getElementById("id_genre").placeholder = "Enter genre (string)";
+        document.getElementById("id_image_url").placeholder = "Enter image URL (string)";
+        document.getElementById("id_youtube_url").placeholder = "Enter YouTube URL (string)";
+    </script>
+</body>
+</html>
+

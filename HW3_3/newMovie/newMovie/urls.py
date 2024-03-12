@@ -1,8 +1,8 @@
 """
-URL configuration for company_project project.
+URL configuration for newMovie project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,13 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path
+from MovieApp import views
 from django.contrib import admin
-from django.urls import include, path
-from customer_app.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Update this line to match the login/ path
-    path('login/', LoginView.as_view(), name='login'),
-    path("customer/", include("customer_app.urls")),
+    path('', views.movie_login, name='movie_login'),
+    path('login/', views.movie_login, name='movie_login'),
+    path('list/', views.movie_list, name='movie_list'),
+    path('details/<int:movie_id>/', views.movie_details, name='movie_details'),
+    path('add/', views.movie_add, name='movie_add'),
+    path('update/<int:movie_id>/', views.movie_update, name='movie_update'),
+    path('delete/<int:movie_id>/', views.movie_delete, name='movie_delete'),
 ]

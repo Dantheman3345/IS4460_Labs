@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Movie Edit</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-Order Edit:<br>
-<form method='post' class="form" action="{% url 'order-update' order_id=order.id %}">
+Movie Edit:<br>
+<form method="post" class="form" action="{% url 'movie-update' movie.id %}"> <!-- Ensure 'movie-update' is the correct name in your urls.py -->
 
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value='Update'>
-  </form>
+    {{ form.as_p }} <!-- This will display the Movie form fields -->
+    <input type="submit" value="Update Movie">
 </form>
 
 </body>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie List</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie List</h1>
+        <a href="{% url 'movie_add' %}">Add Movie</a>
+        <ul>
+            {% for movie in movies %}
+                <li>
+                    <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                    <p>Title: {{movie.title}}</p>
+                    <p>Description: {{ movie.description }}</p>
+                    <p>Director: {{ movie.director }}</p>
+                    <a href="{% url 'movie_details' movie.movie_id %}">{{ movie.title }} </a>
+                    <a href="{% url 'movie_update' movie.movie_id %}">Edit</a>
+                    <a href="{% url 'movie_delete' movie.movie_id %}">Delete</a>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </li>
+            {% empty %}
+                <li>No movies yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
