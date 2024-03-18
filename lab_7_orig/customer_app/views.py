@@ -1,9 +1,43 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
-from .models import Customer, Order
-from .forms import CustomerForm, OrderForm
+from .models import Customer, Order, Contact
+from .forms import CustomerForm, OrderForm, ContactForm
 # Create your views here.
+
+class ContactEdit(View):
+
+    def get(self,request,contact_id=None):
+
+        if contact_id:
+            contact = Contact.objects.get(pk=contact_id)
+        else:
+            contact = Contact()
+
+        form = ContactForm(instance=contact)
+
+        return render(request = request,
+                      template_name = 'customer_app/contact_edit.html',
+                      context = {'contact':contact,'form':form})
+
+    def post(self,request,contact_id=None):
+
+        if contact_id:
+            contact = Contact.objects.get(pk=contact_id)
+        else:
+            contact = Contact()
+
+        form = ContactForm(request.POST,instance=contact)
+
+        if form.is_valid():
+            contact = form.save()
+
+            return redirect(reverse("contact-edit"))
+        
+        return render(request = request,template_name = 'customer_app/contact_edit.html',context = {'contact':contact,'form':form})
+    
+
+
 
 class CustomerList(View):
 
@@ -28,11 +62,12 @@ class CustomerEdit(View):
         form = CustomerForm(request.POST,instance=customer)
 
         if form.is_valid():
+            logo = request.FILES['logo']
+            instance = customer.logo = logo
             customer = form.save()
         
         return render(request = request,template_name = 'customer_app/customer_edit.html',context = {'customer':customer,'form':form})
     
-
 
 class OrderList(View):
 
@@ -42,6 +77,7 @@ class OrderList(View):
 
         return render(request = request,template_name = 'customer_app/order_list.html',context = {'orders':orders})
     
+
 class OrderEdit(View):
 
     def get(self,request,order_id=None):
@@ -74,9 +110,6 @@ class OrderEdit(View):
         return render(request = request,template_name = 'customer_app/order_edit.html',context = {'order':order,'form':form})
     
 
-
-
-
 class OrderDelete(View):
 
     def get(self,request,order_id=None):
@@ -85,8 +118,6 @@ class OrderDelete(View):
             order = Order.objects.get(pk=order_id)
         else:
             order = Order()
-
-      
 
 
         form = OrderForm(instance=order)
