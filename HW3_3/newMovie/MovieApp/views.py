@@ -2,6 +2,18 @@
 from django.shortcuts import render, redirect
 from .models import Movie
 from .forms import MovieForm
+from .serializers import MovieSerializer
+from rest_framework import generics
+
+class MovieListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+class MovieRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
 
 def movie_login(request):
     return render(request, 'movie_login.html')

@@ -27,4 +27,7 @@ urlpatterns = [
     path('add/', views.movie_add, name='movie_add'),
     path('update/<int:movie_id>/', views.movie_update, name='movie_update'),
     path('delete/<int:movie_id>/', views.movie_delete, name='movie_delete'),
+    # API URLs
+    path('api/movies/', views.MovieListCreateAPIView.as_view(), name='movie-list-create'),
+    path('api/movies/<int:pk>/', views.MovieRetrieveUpdateDestroyAPIView.as_view(), name='movie-retrieve-update-destroy'),
 ]
