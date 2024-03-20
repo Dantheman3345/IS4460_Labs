@@ -1,0 +1,15 @@
+import requests
+
+def get_movie(movie_id):
+    api_url = f"http://127.0.0.1:8000/api/movies/{movie_id}/"
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        print("Movie retrieved successfully.")
+        print(response.json())
+    else:
+        print(f"Failed to retrieve movie. Status code: {response.status_code}")
+        print(response.content)
+
+# Example usage
+get_movie(2)  # Assuming '1' is the ID of the movie you want to retrieve

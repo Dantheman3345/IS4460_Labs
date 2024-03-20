@@ -3,7 +3,7 @@ import json
 
 
 # Define the URL to your API endpoint for creating movies
-api_url = "http://127.0.0.1:8000/api/movies"
+api_url = "http://127.0.0.1:8000/api/movies/"
 
 # Create a dictionary with movie data
 movie_data = {
@@ -20,7 +20,9 @@ movie_data = {
 }
 
 # Send a POST request to the API endpoint with the movie data
-response = requests.post(api_url, json=movie_data)
+#response = requests.post(api_url, data=movie_data)
+
+response = requests.post(api_url, data=json.dumps(movie_data), headers={'Content-Type':'application/json'})
 
 # Check the response status code
 if response.status_code == 201:
@@ -30,6 +32,6 @@ if response.status_code == 201:
 else:
     print(f"Failed to create movie. Status code: {response.status_code}")
     # Optionally, print the response text to understand what went wrong
-    print(response.text)
+    print(response.content)
 
 
