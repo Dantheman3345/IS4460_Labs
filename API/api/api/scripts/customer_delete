@@ -1,0 +1,12 @@
+import requests
+import json
+
+id = 1
+api_url = f'http://localhost:8000/api/customers/{id}/'
+
+response = requests.delete(url = api_url)
+
+if response.status_code == 204:
+    print("Customers deleted sucessfully.")
+else:
+    print(f"Error deleting the Customers.")
