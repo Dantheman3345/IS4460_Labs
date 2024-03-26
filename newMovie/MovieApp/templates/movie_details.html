@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Details</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Hello, {{ user.username }}!</p>
+        <h1>{{ movie.title }}</h1>
+        <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+        <p>Description: {{ movie.description }}</p>
+        <p>Director: {{ movie.director }}</p>
+        <p>Release Year: {{ movie.release_year }}</p>
+        <p>Budget: {{ movie.budget }}</p>
+        <p>Runtime: {{ movie.runtime }}</p>
+        <p>Rating: {{ movie.rating }}</p>
+        <p>Genre: {{ movie.genre }}</p>
+        {% if movie.youtube_url %}
+            <iframe width="560" height="315" src="{{ movie.youtube_url }}" frameborder="0" allowfullscreen></iframe>
+            <p><a href="{{ movie.youtube_url }}">Watch on YouTube</a></p>
+        {% endif %}
+        <a href="{% url 'movie_update' movie.movie_id %}">Edit</a>
+        <a href="{% url 'movie_delete' movie.movie_id %}">Delete</a>
+    </div>
+</body>
+</html>

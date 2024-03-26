@@ -1,0 +1,24 @@
+import requests
+import json
+
+def update_movie(movie_id, updated_data):
+    api_url = f"http://127.0.0.1:8000/api/movies/{movie_id}/"
+    headers = {'Content-Type': 'application/json'}
+    response = requests.put(api_url, data=json.dumps(updated_data), headers=headers)
+
+    if response.status_code == 200:
+        print("Movie updated successfully.")
+        print(response.json())
+    else:
+        print(f"Failed to update movie. Status code: {response.status_code}")
+        print(response.content)
+
+# Example updated data
+updated_data = {
+    "title": "Updated Movie Title",
+    "description": "Updated description.",
+    # Add more fields as necessary
+}
+
+# Example usage
+update_movie(14, updated_data)  # Assuming '1' is the ID of the movie you want to update
