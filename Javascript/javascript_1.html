@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        This is a test webpage for JavaScript, JavaScript_1
+        <br>
+        <br>
+        <button onclick="showMessage()">Say Hi!</button>
+
+        <div id="result"></div>
+
+        <script>
+            function showMessage() {
+                const resultDiv = document.getElementById("result");
+                const messageText = document.createElement('p');
+                messageText.innerText = "Hi! Thanks for clicking the button!";
+                resultDiv.appendChild(messageText);
+            }
+        </script>
+    </body>
+</html>

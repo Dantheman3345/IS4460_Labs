@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        This is a test webpage for JavaScript, JavaScript_2
+        <br>
+        <br>
+        Text:<br><textarea id="inputText" rows="4" cols="50"></textarea>
+
+        <div id="result">Message:<p id='message'></p></div>
+
+        <script>
+            document.getElementById('inputText').addEventListener('keyup', function(){
+                showText();
+            });
+
+            function showText() {
+                const MESSAGE = document.getElementById('inputText').value;
+                const messageText = document.getElementById('message'); // Corrected getElementById
+                messageText.innerText = MESSAGE;
+            }
+        </script>
+    </body>
+</html>
