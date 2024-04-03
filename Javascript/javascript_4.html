@@ -1,0 +1,27 @@
+<body>
+    <label>
+        <input type="text" id="numberInput" onkeyup="validateInput();" /> OrderId (only integers)
+    </label>
+    <p id="warning" style="color: red;"></p>
+
+    <script>
+        function validateInput() {
+            const inputElement = document.getElementById('numberInput');
+            const warningElement = document.getElementById('warning');
+
+            // Regular expression to match non-digit characters
+            const nonNumberRegex = /\D/g;
+
+            if (nonNumberRegex.test(inputElement.value)) {
+                // Remove any non-digit characters
+                inputElement.value = inputElement.value.replace(nonNumberRegex, '');
+
+                // Optionally, display a warning message
+                warningElement.textContent = "Only numbers are allowed!";
+            } else {
+                // Clear warning message
+                warningElement.textContent = "";
+            }
+        }
+    </script>
+</body>

@@ -1,0 +1,36 @@
+<body>
+    <div>
+        Some webpage content here...
+
+        <div id="main" class="content"> <!-- Changed from class="main" class="content" to id="main" class="content" -->
+            <div class="controls">
+                <label>
+                    <input type="radio" name="bgcolor" value="blue"> blue
+                </label>
+                <label>
+                    <input type="radio" name="bgcolor" value="red"> red
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // define the function
+        function toggle_colors() {
+            const radioButtons = document.querySelectorAll('input[name="bgcolor"]');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener("change", function () {
+                    if (this.value === 'blue') {
+                        document.getElementById("main").style.backgroundColor = 'blue';
+                    } else {
+                        document.getElementById('main').style.backgroundColor = 'red';
+                    }
+                });
+            });
+        }
+
+        // Corrected the function call to ensure it's called after the DOM content is fully loaded
+        document.addEventListener('DOMContentLoaded', toggle_colors);
+    </script>
+</body>
