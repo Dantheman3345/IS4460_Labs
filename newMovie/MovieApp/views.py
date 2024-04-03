@@ -1,22 +1,38 @@
-
 from django.shortcuts import render, redirect
-from .models import Movie
-from .forms import MovieForm
-from .serializers import MovieSerializer
-from rest_framework import generics
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
-from .models import Movie
-from .forms import MovieForm
+from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView, View, ListView
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.views.generic import View, TemplateView
-from .forms import CustomLoginForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponseForbidden
+from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
+from rest_framework import generics
+from .models import Movie
+from .forms import MovieForm, CustomLoginForm
+from .serializers import MovieSerializer
+
+
+
+
+
+class IsAdminMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect(self.login_url)
+        if not request.user.is_superuser:  # Check if user is an admin
+            # Return a HttpResponseForbidden or render a template for forbidden access
+            return HttpResponseForbidden(render(request, 'forbidden.html'))
+        return super().dispatch(request, *args, **kwargs)
+
+class UserListView(IsAdminMixin, LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'user_list.html'
+    context_object_name = 'users'
+    login_url = '/login/'  # Redirect to login page if not authenticated
+
+
 
 
 # MovieLoginView for handling login

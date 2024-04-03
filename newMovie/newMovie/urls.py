@@ -18,11 +18,12 @@ Including another URLconf
 from django.urls import path
 from MovieApp import views
 from django.contrib import admin
-from django.contrib.auth.views import LoginView
-from MovieApp.views import MovieLoginView
+from django.contrib.auth.views import LoginView, LogoutView
+from MovieApp.views import MovieLoginView, UserListView
 
 
 urlpatterns = [
+    path('users/', UserListView.as_view(), name='user_list'),
     #path('login/', LoginView.as_view(template_name='your_template_name.html'), name='login'),
     path('login/', MovieLoginView.as_view(), name='movie_login'),
     #path('login/', views.MovieLoginView.as_view(), name='movie_login'),

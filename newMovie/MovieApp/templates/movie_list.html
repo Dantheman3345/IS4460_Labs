@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <title>Movie List</title>
     <style>
         body {
-            background-color: #333;
+            background-image: url("{% static 'MovieApp/images/moviebackground3.jpg' %}");
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the background image */
             color: #fff;
             font-family: Arial, sans-serif;
         }
@@ -16,13 +19,35 @@
             max-width: 100%;
             height: auto;
         }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333; /* Example background color */
+            color: #fff; /* Text color */
+            text-align: center;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Movie List</h1>
         <p>Hello, {{ user.username }}!</p>
-        <a href="{% url 'movie_add' %}">Add Movie</a>
+        <a class="btn" href="{% url 'movie_add' %}">Add Movie</a>
+        <br>
+        <br>
+        <form action="{% url 'movie_logout' %}" method="post">
+            {% csrf_token %}
+            <button class="btn" type="submit">Logout</button>
+        </form>
+        <br>
+        <br>
+        <a class="btn" href="{% url 'user_list' %}">User List</a>
+        <br>
+        <br>
         <ul>
             {% for movie in movies %}
                 <li>
@@ -30,9 +55,9 @@
                     <p>Title: {{movie.title}}</p>
                     <p>Description: {{ movie.description }}</p>
                     <p>Director: {{ movie.director }}</p>
-                    <a href="{% url 'movie_details' movie.movie_id %}">{{ movie.title }} </a>
-                    <a href="{% url 'movie_update' movie.movie_id %}">Edit</a>
-                    <a href="{% url 'movie_delete' movie.movie_id %}">Delete</a>
+                    <a class="btn" href="{% url 'movie_details' movie.movie_id %}">{{ movie.title }}</a>
+                    <a class="btn" href="{% url 'movie_update' movie.movie_id %}">Edit</a>
+                    <a class="btn" href="{% url 'movie_delete' movie.movie_id %}">Delete</a>
                     <br>
                     <br>
                     <br>
