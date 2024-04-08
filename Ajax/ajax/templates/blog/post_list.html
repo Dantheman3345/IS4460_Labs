@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+
+<main>
+    <u>
+        {% for post in posts %}
+        <li>{{ post.title }} - <span id="like-count-{{post.id}}">{{ post.likes }}</span> likes.
+            <button class='like-button' data-postid="{{ post.id }}">Like</button>
+        </li>
+        {% endfor %}
+    </u>
+</main>
+
+<script>
+    $(document).ready(function () {
+        $('.like-button').click(function () {
+            debugger;
+            var post_id = $(this).data('postid');
+            $.ajax({
+                url: `/blog/like_post/${post_id}/`,
+                type: 'POST',
+                success: function (data) {
+                    debugger;
+                    $(`#like-count-${data.id}`).text(data.likes);
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", $('meta[name="csrf-token"]').attr('content'));
+                }
+            })
+        })
+    })
+</script>
+
+
+</html>
